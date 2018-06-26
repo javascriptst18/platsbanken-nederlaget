@@ -12,6 +12,7 @@
   <title>Platsbanken</title>
 </head>
 <body>
+
   <!-- Header content below this note -->
   <header>
     <!--Header Image-->
@@ -25,6 +26,46 @@
     </div>
   </header>
 
+    <header>
+        <!--Header Image below this note-->
+        <img src="images\header-img.jpeg" class="img-fluid" alt="Responsive image">
+        <!--Header Input Field below this note-->
+        <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Sök</span>
+              </div>
+              <input class="userInput" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <!--Header Dropdown Field below this note-->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Välj Län
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Stockholm</a>
+              <a class="dropdown-item" href="#">Göteborg</a>
+              <a class="dropdown-item" href="#">Malmö  </a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Välj Yrkesområde
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">IT</a>
+              <a class="dropdown-item" href="#">Försäljning</a>
+              <a class="dropdown-item" href="#">Utbildning</a>
+            </div>
+          </div>
+
+
+    </header>
+
+  <div id="cardContainer">
+
+
   <main>
     <!-- container that generates statistics with quantity -->
     <div class="container" id="quantityOfAdsContainer">
@@ -34,6 +75,7 @@
     <div class="container" id="cardContainer">
 
     </div>
+
 
     <!-- Footer begins below this note -->
     <footer>
@@ -49,6 +91,15 @@
     </footer>
     <script src="scripts/index.js"></script>
   </main>
+
+    <!-- footer img below this note -->
+    <img class="card-img-bottom" src="images\img-letterhead-footer-1024x243.jpg" alt="Card image cap">
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="scripts/index.js"></script>
+
 </body>
 
 </html>
