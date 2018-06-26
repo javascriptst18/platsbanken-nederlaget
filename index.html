@@ -12,34 +12,43 @@
   <title>Platsbanken</title>
 </head>
 <body>
-    <header>
-
-        <img src="images\header-img.jpeg" class="img-fluid" alt="Responsive image"> <!--Header Image-->
-
-        <div class="input-group mb-3">  <!--Header Input Field-->
-              <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Sök</span>
-              </div>
-              <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </div>
-        
-    </header>
-
-  <div id="cardContainer">
-
-  </div>
-
-  <!-- Footer begins below this note -->
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Footer title</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  <!-- Header content below this note -->
+  <header>
+    <!--Header Image-->
+    <img src="images\header-img.jpeg" class="img-fluid" alt="Responsive image">
+    <!--Header Input Field-->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Sök</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
     </div>
-    <!-- footer img below this note -->
-    <img class="card-img-bottom" src="images\img-letterhead-footer-1024x243.jpg" alt="Card image cap">
-  </div>
-  <script src="scripts/index.js"></script>
+  </header>
+
+  <main>
+    <!-- container that generates statistics with quantity -->
+    <div class="container" id="quantityOfAdsContainer">
+      
+    </div>
+    <!-- container that generates cards with job ads -->
+    <div class="container" id="cardContainer">
+
+    </div>
+
+    <!-- Footer begins below this note -->
+    <footer>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Footer title</h5>
+          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+        <!-- footer img below this note -->
+        <img class="card-img-bottom" src="images\img-letterhead-footer-1024x243.jpg" alt="Card image cap">
+      </div>
+    </footer>
+    <script src="scripts/index.js"></script>
+  </main>
 </body>
 
 </html>
