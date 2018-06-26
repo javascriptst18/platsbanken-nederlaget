@@ -45,7 +45,7 @@ function printJobList(jobList) {
   cardContainer.innerHTML = "";
 
   for (let jobs of jobList) {
-    cardContainer.innerHTML += ` <div id="${jobs.id}" class="card" style="width: 18rem;">
+    cardContainer.innerHTML += ` <div id="${jobs.id}" class="card" style="width: 60em;">
       <img class="card-img-top" src=".../100px180/" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">${jobs.annonsrubrik}</h5>
