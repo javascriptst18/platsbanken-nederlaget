@@ -12,57 +12,71 @@
   <title>Platsbanken</title>
 </head>
 <body>
-    <header>
-        <!--Header Image below this note-->
-        <img src="images\header-img.jpeg" class="img-fluid" alt="Responsive image">
-        <!--Header Input Field below this note-->
-        <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroup-sizing-default">Sök</span>
-              </div>
-              <input class="userInput" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-        </div>
+  <header>
+    <!--Header Image below this note-->
+    <img src="images\header-img.jpeg" class="img-fluid" alt="Responsive image">
+    <!--Header Input Field below this note-->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Sök</span>
+      </div>
+      <input class="userInput" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
 
-        <!--Header Dropdown Field below this note-->
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Välj Län
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">Stockholm</a>
-              <a class="dropdown-item" href="#">Göteborg</a>
-              <a class="dropdown-item" href="#">Malmö  </a>
-            </div>
-          </div>
+    <!--Header Dropdown Field below this note-->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Välj Län
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Stockholm</a>
+        <a class="dropdown-item" href="#">Göteborg</a>
+        <a class="dropdown-item" href="#">Malmö  </a>
+      </div>
+    </div>
 
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Välj Yrkesområde
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="#">IT</a>
-              <a class="dropdown-item" href="#">Försäljning</a>
-              <a class="dropdown-item" href="#">Utbildning</a>
-            </div>
-          </div>
+    <!-- dropdown menu for "yrkesområden" below this note -->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Välj Yrkesområde
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">IT</a>
+        <a class="dropdown-item" href="#">Försäljning</a>
+        <a class="dropdown-item" href="#">Utbildning</a>
+      </div>
+    </div>
+  </header>
 
+  <!-- main content och generated cards below this note -->
+  <main>
 
-    </header>
+    <!-- container that generate quantity och ads -->
+    <div class="Container" id="quantityOfAdsDiv">
 
-  <div id="cardContainer">
+    </div>
 
-  </div>
+    <!-- container that generate cards with ads -->
+    <div class="Container" id="cardContainer">
+
+    </div>
+
+  </main>
 
   <!-- Footer begins below this note -->
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Footer title</h5>
-      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  <footer>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Footer title</h5>
+        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+        <p class="card-text"><small class="text-muted">Made by Nederlager</small></p>
+      </div>
+      <!-- footer img below this note -->
+      <img class="card-img-bottom" src="images\img-letterhead-footer-1024x243.jpg" alt="Card image cap">
     </div>
-    <!-- footer img below this note -->
-    <img class="card-img-bottom" src="images\img-letterhead-footer-1024x243.jpg" alt="Card image cap">
-  </div>
+  </footer>
+
+  <!-- scripts for bootstrap and javascript below this note -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
