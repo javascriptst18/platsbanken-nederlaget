@@ -5,8 +5,8 @@
 		"scss/style.scss"
 	],
 	"sourcesContent": [
-		"$banana: #fac863;\r\n\r\n.🍌 {\r\n  background-color: $banana;\r\n}"
+		""
 	],
-	"mappings": ";;AAEA,AAAA,KAAK,CAAC;EACJ,gBAAgB,EAHT,OAAO;CAIf",
+	"mappings": "",
 	"names": []
 }
