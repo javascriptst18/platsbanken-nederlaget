@@ -5,8 +5,30 @@ header {
 }
 
 .input-group {
+
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+}
+
+
+#dropDownOne {
+  width: 25%;
+  height: 7%;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+#dropDownTwo {
+  width: 25%;
+  height: 7%;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
