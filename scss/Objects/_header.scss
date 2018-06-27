@@ -3,7 +3,6 @@ header {
     text-align: center;
     color: white;
 
-
 }
 
 
@@ -20,10 +19,11 @@ opacity: .8;
 
 .inputContainer {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 130px;
+  height: 100px;
+  min-width:270px;
 
 }
 
@@ -32,22 +32,24 @@ opacity: .8;
 
 }
 
+.buttonContainer {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 290px;
+}
+
 #dropDownOne {
   width: 25%;
   height: 7%;
-  position: absolute;
-  top: 40%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-
+  float: left;
+  margin-right:40px;
+  margin-left:5px;
 }
 
 #dropDownTwo {
   width: 25%;
   height: 7%;
-  position: absolute;
-  top: 70%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-
+  float: left;
 }
