@@ -14,38 +14,40 @@
   <header id="header">
     <!--Header Image below this note-->
     <img src="images\header-img.jpeg" id="HeaderImage" class="img-fluid" alt="Responsive image">
+      <label for="userInput" class="label">Sök På Arbetsområden/Ort</label>
     <!--Header Input Field below this note-->
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-small">Sök</span>
-      </div>
-      <input id="userInput" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-small">
-    </div>
+    <div class="inputContainer">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-small">Sök</span>
+        </div>
+        <input id="userInput" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-small" placeholder="Arbetsområde/Ort">
 
-    <!--Header Dropdown Field below this note-->
-    <div id="dropDownOne" class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Välj Län
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" id="stockholm" href="#">Stockholm</a>
-        <a class="dropdown-item" id="göteborg" href="#">Göteborg</a>
-        <a class="dropdown-item" id="malmö" href="#">Malmö  </a>
-      </div>
-    </div>
+        <!--Header Dropdown Field below this note-->
+        <div id="dropDownOne" class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Välj Län
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" id="stockholm" href="#">Stockholm</a>
+            <a class="dropdown-item" id="göteborg" href="#">Göteborg</a>
+            <a class="dropdown-item" id="malmö" href="#">Malmö  </a>
+          </div>
+        </div>
 
-    <!-- dropdown menu for "yrkesområden" below this note -->
-    <div id="dropDownTwo" class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Välj Yrkesområde
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" class="it" href="#">IT</a>
-        <a class="dropdown-item" class="försäljning" href="#">Försäljning</a>
-        <a class="dropdown-item" class="utbildning" href="#">Utbildning</a>
-      </div>
+        <!-- dropdown menu for "yrkesområden" below this note -->
+        <div id="dropDownTwo" class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Välj Yrkesområde
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" class="it" href="#">IT</a>
+            <a class="dropdown-item" class="försäljning" href="#">Försäljning</a>
+            <a class="dropdown-item" class="utbildning" href="#">Utbildning</a>
+          </div>
+        </div>
+      </header>
     </div>
-  </header>
 
   <!-- main content och generated cards below this note -->
   <main>
