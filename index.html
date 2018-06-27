@@ -20,6 +20,7 @@
     <!--Header Input Field below this note-->
     <form id="formField">
       <div class="form-group">
+        <label for="userInput">Sök jobbannonser</label>
         <input type="text" class="form-control" id="userInput" aria-describedby="emailHelp" placeholder="Sök jobb som: Utvecklare, Sjuksköterska, Lärare...">
         <small id="textHelp" class="form-text text-muted">Sök yrke, yrkesområde, sektor eller likannde.</small>
       </div>
@@ -27,30 +28,27 @@
 
     <!--Header Dropdown Field below this note-->
     <div id="dropDownOne" class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">
-      Välj Län
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" id="stockholm" href="#">Stockholm</a>
-      <a class="dropdown-item" id="göteborg" href="#">Göteborg</a>
-      <a class="dropdown-item" id="malmö" href="#">Malmö </a>
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLan" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">Välj Län</button>
+      <div class="dropdown-menu" id="dropdownMenuLan" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" id="1" href="#">Stockholm</a>
+        <a class="dropdown-item" id="14" href="#">Västra Götaland</a>
+        <a class="dropdown-item" id="12" href="#">Skåne</a>
+      </div>
+  </div>
+    
+    <!-- dropdown menu for "yrkesområden" below this note -->
+    <div id="dropDownTwo" class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonYrkesomrade" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">Välj Yrkesområde</button>
+      <div class="dropdown-menu" id="dropdownMenuYrkesomrade" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" id="3" href="#">Data/IT</a>
+        <a class="dropdown-item" id="5" href="#">Försäljning, inköp, marknadsföring</a>
+        <a class="dropdown-item" id="22" href="#">Militärt arbete</a>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Dropdown menu for "yrkesområden" below this note -->
-  <div id="dropDownTwo" class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">
-    Välj Yrkesområde
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" class="it" href="#">IT</a>
-    <a class="dropdown-item" class="försäljning" href="#">Försäljning</a>
-    <a class="dropdown-item" class="utbildning" href="#">Utbildning</a>
-  </div>
-</div>
-</header>
 
 <!-- Main content and generated cards below this note -->
 <main>
