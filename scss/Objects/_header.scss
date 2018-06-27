@@ -3,50 +3,51 @@ header {
     text-align: center;
     color: white;
 
-    .label {
-      position: absolute -1000;
-      top: 40%;
-      left: 37%;
-    }
 
-    .inputContainer {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height: 130px;
+}
 
-        .input-group-text {
-        opacity: .8;
 
-        }
+.label {
+  position: absolute -1000;
+  top: 40%;
+  left: 37%;
+}
 
-    }
+.input-group-text {
+opacity: .8;
 
-    .form-control {
-      opacity: .3;
+}
 
-    }
+.inputContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 130px;
 
-    #dropDownOne {
-      width: 25%;
-      height: 7%;
-      position: absolute;
-      top: 50%;
-      left: 20%;
-      transform: translate(-50%, -50%);
+}
 
-    }
+.form-control {
+  opacity: .3;
 
-    #dropDownTwo {
-      width: 25%;
-      height: 7%;
-      position: absolute;
-      top: 80%;
-      left: 20%;
-      transform: translate(-50%, -50%);
+}
 
-    }
+#dropDownOne {
+  width: 25%;
+  height: 7%;
+  position: absolute;
+  top: 40%;
+  left: 20%;
+  transform: translate(-50%, -50%);
 
+}
+
+#dropDownTwo {
+  width: 25%;
+  height: 7%;
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  transform: translate(-50%, -50%);
 
 }
