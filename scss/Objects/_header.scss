@@ -1,0 +1,55 @@
+header {
+    position: relative;
+    text-align: center;
+    color: white;
+
+}
+
+
+.label {
+  position: absolute -1000;
+  top: 40%;
+  left: 37%;
+}
+
+.input-group-text {
+opacity: .8;
+
+}
+
+.inputContainer {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100px;
+  min-width:270px;
+
+}
+
+.form-control {
+  opacity: .3;
+
+}
+
+.buttonContainer {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 290px;
+}
+
+#dropDownOne {
+  width: 25%;
+  height: 7%;
+  float: left;
+  margin-right:40px;
+  margin-left:5px;
+}
+
+#dropDownTwo {
+  width: 25%;
+  height: 7%;
+  float: left;
+}
