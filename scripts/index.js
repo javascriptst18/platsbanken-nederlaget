@@ -49,6 +49,10 @@ function printJobList(jobList) {
 
   // loop through results.
   for (let jobs of jobList) {
+    //remove style!!!!
+    //
+    // 
+    // 
     cardContainer.innerHTML += ` <div id="${jobs.annonsid}" class="card" style="width: 60%; height: 12rem;">
       <img class="card-img  " src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="Card image cap">
       <div class="card-body">
@@ -83,24 +87,29 @@ function createListners() {
 }
 
 //Create search functionallity
-function submitSearch(event) {
+async function submitSearch(event) {
   console.log(`event registrerat!`)  
   event.preventDefault();
   let searchInput = document.getElementById(`userInput`);
   if (searchInput.value == ``) {
       return searchInput.placeholder = `Prova igen`;
   } else {
-    console.log(`gick det hem`)  
-    const searchTerm = searchByWord()
-    ///v0/platsannonser/{annonsid}/logotyp
-// Hämta logotyp
-    //searchByCriteria() 
+    console.log(`gick hem!`) ;
+    const searchResults = await searchByWords(searchInput.value);
+    console.log(searchResults) ;
+    printJobList(searchResults.matchningslista.matchningdata);
   }
 }
 
-function searchByWord() {
-
-
+async function searchByWords(criteria) {
+  //
+  // Should split search string by _space_ or commas
+  // const newCriteria = splitSearchString();
+  //
+  const searchURL = `platsannonser/matchning?nyckelord=${criteria}`;
+  console.log(searchURL);
+  const matches = await fetchData(searchURL);
+  return matches;
 }
 async function fetchData(criteria) {
   //sets base URL:
