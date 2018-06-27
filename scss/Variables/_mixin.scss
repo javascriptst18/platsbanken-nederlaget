@@ -1,0 +1,19 @@
+// Use to center Object
+@mixin centerFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+// Centers card ads with correct padding/margin
+@mixin cardStyling {
+  padding: 5px;
+  width: 60%;
+  height: 12rem;
+  margin: 10px;
+  text-align: center;
+  font-family: $cardFont;
+  background-color: $cardBackground;
+
+}
