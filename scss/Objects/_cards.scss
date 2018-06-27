@@ -6,6 +6,8 @@
 }
 
 .card{
+  max-width: 600px;
+  width: 66%;
   margin-top: 1%;
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
@@ -26,6 +28,7 @@
   position: absolute;
   top: 18%;
   left: 105%;
+  display: none;
 }
 
 .card-title{
@@ -34,4 +37,9 @@
 
 .card-text{
   color: $darkKnightGray;
+}
+
+#footerContainer{
+  width: 100%;
+
 }
