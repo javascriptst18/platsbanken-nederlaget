@@ -1,0 +1,37 @@
+#cardContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+}
+
+.card{
+  margin-top: 1%;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+}
+.card-body{
+  @include cardStyle;
+  margin: 0;
+
+}
+
+
+.card-img{
+  // @include card-img;
+  display: flex;
+  align-items: flex-end;
+  max-width: 15%;
+  position: absolute;
+  top: 18%;
+  left: 105%;
+}
+
+.card-title{
+  color: $darkKnightGray;
+}
+
+.card-text{
+  color: $darkKnightGray;
+}
