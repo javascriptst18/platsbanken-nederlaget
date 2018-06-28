@@ -2,9 +2,8 @@
 
 let searchVariables = {
   baseURL: `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?`,
-  // lanid: `1`,
-  // yrkesomradeid: `3`,
-  // antalrader: `10`,
+  searchString: `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?`,
+  searchCriterias: {},
   listaLanURL: `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/lan`,
   listaYrkenURL: `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden`
 }
@@ -23,7 +22,7 @@ async function runScript() {
   //initiate search results.
   const results = await searchByCriteria(`&lanid=1&yrkesomradeid=3&antalrader=10`);
   printJobList(results.matchningslista.matchningdata)
-
+console.log(results.matchningslista.matchningdata)
   // to be announced:
   // addNumberOfJobs(results.matchningslista.antal_platsannonser, results.matchningslista.antal_platserTotal, results.matchningslista.antal_sidor);
 
@@ -46,8 +45,9 @@ async function searchByCriteria(searchCriteria) {
 function printJobList(jobList) {
   // erase list
   cardContainer.innerHTML = "";
-
   // loop through results and srite innerHTML.
+  console.log(`print job list`)
+  console.log(jobList)
   for (let jobs of jobList) {
     cardContainer.innerHTML += ` <div id="${jobs.annonsid}" class="card">
       <div class="img-container"><img class="card-img" src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="No logo"></div>
@@ -86,42 +86,50 @@ async function createDropdowns() {
   const yrkenList = await fetchData(searchVariables.listaYrkenURL);
   insertDropdownMenu(yrkenList, document.getElementById(`dropdownYrke`));
   //lägg tryckta knappar på en rad under sökrubriker!
-  console.log(`created dropdowns`)
 }
 
 //Create search functionallity
 async function submitSearch(event) {
   //prevents site from reloading!
   event.preventDefault();
-  //get search field elelmtn
+  //get search field element
   let searchInput = document.getElementById(`userInput`);
 
   //handles empty case!
   if (searchInput.value == ``) {
     // if empty asks for new search!
+    //
+    // FEL GÖR OM! VID TOM TEXT ANVÄNDS SENASTE
+    if(searchVariables.searchCriterias.searchTerm){
+    delete searchVariables.searchCriterias.searchTerm
+    }
+    
+    delete searchVariables.searchCriterias.searchTerm;
     return searchInput.placeholder = `Prova igen`;
   } else {
-    //search API for word!
-    const searchResults = await searchByWords(searchInput.value);
-    printJobList(searchResults.matchningslista.matchningdata);
+    // split string
+    //update string
+    const searchQuery = `&nyckelord=${searchInput.value}`
+    obj = {dataset: {value: `` },
+    id: "searchTerm"
+    };
+    appendSearchString(searchQuery, obj);
+    updateSearchString();
   }
 }
 
-// finds Lan id from Lan data!
-// async function submitLan(event) {
-//   event.preventDefault();
-//   let lanInput = event.target.value;
-//   const lanList = await searchByLan(lanInput);
-//   console.log(lanList);
-//   printJobList(lanList.matchningslista.matchningdata);
-// }
+//adds filter buttons and their functionallity 
+//including new searched when clicked
 async function addLanFilter(event) {
   event.preventDefault();
   // 1. show button in filter field
-  showInFilterField(event.target)
+  showInFilterField(`&lanid=`, event.target);
   // 2. hide button
-  hideButton(event.target)
+  hideButton(event.target);
   // 3. add lanFilter to array
+
+  // perform new serarch
+  newSearch();
 
 }
 
@@ -135,60 +143,85 @@ async function addYrkesFilter(event) {
   //addLanFIlter(event.target)
 
 }
-
-// find job based on yrkesområde!
-async function submitYrke(event) {
-  event.preventDefault();
-  let yrkesInput = event.target.id;
-
-  //CHECK LAN ID!!!
-  const yrkesList = await searchByYrkesomrade(yrkesInput);
-
-  printJobList(yrkesList.matchningslista.matchningdata);
-}
-
-async function searchByWords(criteria) {
-  // Should split search string by _space_ or commas
-  // const newCriteria = splitSearchString();
-  //concat free word search term!
-
-  // fetch data!
-  const matches = await fetchData(`${searchVariables.baseURL}nyckelord=${criteria}`);
-  return matches;
-}
-async function searchByLan(criteria) {
-  const matches = await fetchData(`${searchVariables.baseURL}lanid=${criteria}`);
-  return matches;
-}
-
-async function searchByYrkesomrade(criteria) {
-  const matches = await fetchData(`${searchVariables.baseURL}yrkesomradeid=${criteria}`);
-  return matches;
-}
-
+// does the async fetch command!
 async function fetchData(url) {
-
   const responseObject = await fetch(url);
   const matches = await responseObject.json();
   return matches;
 }
 
-// This function is set on hold
-// For now we hard code buttons with ids similar to lanID from the API
-//
-
+//ads dropdown menus
 async function insertDropdownMenu(list, dropdownElement) {
   dropdownElement.innerHTML = ``;
   for (let item of list.soklista.sokdata) {
     //get element value attribute
-    dropdownElement.innerHTML += `<a class="dropdown-item" id="${list.soklista.listnamn}${item.id}" value ="${item.id}" href="#">${item.namn}</a>`;
+    dropdownElement.innerHTML += `<a class="dropdown-item" id="${list.soklista.listnamn}${item.id}" data-value="${item.id}" href="#">${item.namn}</a>`;
   }
 }
-function showInFilterField(targetObject){
-  document.getElementById(`filters`).innerHTML += `<div class="filter-button" id="${targetObject.id}" value ="${targetObject.value}">${targetObject.innerHTML}</div>`;
+function showInFilterField(details, targetObject) {
+
+  const newFilter = createFilterDiv(targetObject);
+  document.getElementById(`filters`).appendChild(newFilter);
+  appendSearchString(details, targetObject);
+  updateSearchString();
+  newSearch();
+
+  newFilter.addEventListener(`click`, (event) => {
+    event.preventDefault();
+    //show dropdown button again
+    hideButton(targetObject);
+    //remove object in fitler list
+    removeSearchString(newFilter);
+    updateSearchString();
+    newSearch();
+    //remove object from search string
+    removeFilter(newFilter)
+  })
 }
 
-function hideButton(targetObject){
-  targetObject.classList.toggle(`hideElement`)
+function hideButton(targetObject) {
+  //toggle hide class!
+  targetObject.classList.toggle(`hideElement`);
 }
 
+function appendSearchString(details, targetObject) {
+  searchVariables.searchCriterias[targetObject.id] = details + targetObject.dataset.value;
+}
+
+function removeSearchString(targetObject) {
+  for (let i in searchVariables.searchCriterias) {
+    if (searchVariables.searchCriterias[i] == targetObject.dataset.value) {
+      delete searchVariables.searchCriterias[i];
+      return;
+    }
+  }
+}
+
+function createFilterDiv(targetObject) {
+  const newFilter = document.createElement("div");
+  newFilter.classList.add(`filter-button`);
+  newFilter.setAttribute("id", targetObject.id);
+  newFilter.setAttribute("data-value", targetObject.dataset.value);
+  newFilter.innerText = targetObject.innerHTML;
+  return newFilter;
+}
+
+function removeFilter(newFilter) {
+  newFilter.remove();
+}
+
+function updateSearchString() {
+
+  searchVariables.searchString = searchVariables.baseURL;
+  for (let option in searchVariables.searchCriterias) {
+    searchVariables.searchString += searchVariables.searchCriterias[option];
+  }
+  newSearch();
+}
+
+async function newSearch() {
+  console.log(searchVariables.searchString)
+  const matches = await fetchData(searchVariables.searchString);
+  console.log(matches);
+  printJobList(matches.matchningslista.matchningdata);
+}
