@@ -1,17 +1,9 @@
 #cardContainer{
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items: center;
+  @include centerMainContent;
 }
 
 .card{
-  max-width: 600px;
-  width: 66%;
-  margin-top: 1%;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
+  @include singelCardStyle;
 }
 .card-body{
   @include cardStyle;
@@ -21,14 +13,13 @@
 
 
 .card-img{
-  // @include card-img;
   display: flex;
   align-items: flex-end;
   max-width: 15%;
   position: absolute;
   top: 18%;
   left: 105%;
-  display: none;
+
 }
 
 .card-title{
@@ -37,9 +28,4 @@
 
 .card-text{
   color: $darkKnightGray;
-}
-
-#footerContainer{
-  width: 100%;
-
 }

@@ -1,3 +1,21 @@
+@mixin centerMainContent {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+
+}
+
+@mixin singelCardStyle {
+  max-width: 750px;
+  width: 66%;
+  margin-top: 1%;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+
+}
+
 @mixin cardStyle {
   background: white;
   font-family: $standardFont;
@@ -22,4 +40,8 @@
 
 @mixin footer {
 
+}
+
+@mixin hide {
+  display: none;
 }
