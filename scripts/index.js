@@ -22,8 +22,8 @@ async function runScript() {
   //initiate search results.
   const results = await searchByCriteria(`&lanid=1&yrkesomradeid=3&antalrader=10`);
   printJobList(results.matchningslista.matchningdata)
-  // to be announced:
-  // addNumberOfJobs(results.matchningslista.antal_platsannonser, results.matchningslista.antal_platserTotal, results.matchningslista.antal_sidor);
+  countingAds(results.matchningslista);
+  settingSitePage(results.matchningslista);
 
   createDropdowns();
   createListeners();
@@ -55,12 +55,6 @@ function printJobList(jobList) {
       </div>
     </div>`
   }
-}
-
-function addNumberOfJobs(antalTraffar, antalPerSida, antalSidor) {
-  //adds details to page about search result numbers
-  document.querySelector(`#quantityOfAdsDiv`).innerHTML = antalTraffar + antalPerSida, antalSidor;
-  // adjust row above and add the numbers to the right row!
 }
 
 // designated function that adds listners to buttons and search fields.
@@ -111,6 +105,8 @@ async function submitSearch(event) {
     updateSearchString();
     const matches = await newSearch();
     printJobList(matches.matchningslista.matchningdata);
+    countingAds(matches.matchningslista);
+    settingSitePage(matches.matchningslista);
   }
 }
 
@@ -127,6 +123,8 @@ async function addLanFilter(event) {
   // perform new serarch
   const matches = await newSearch();
   printJobList(matches.matchningslista.matchningdata);
+  countingAds(matches.matchningslista);
+  settingSitePage(matches.matchningslista);
   //remove object from search string
 
 }
@@ -225,4 +223,16 @@ function updateSearchString() {
 async function newSearch() {
   console.log(searchVariables.searchString);
   return await fetchData(searchVariables.searchString);
+}
+
+function countingAds (matchningslista) {
+  const numberOfAds = document.querySelector('#quantityOfAdsDiv');
+  let adCount = matchningslista.antal_platsannonser;
+  numberOfAds.innerHTML = `Visar 10 av totalt ${adCount} lediga jobb.`;
+}
+
+function settingSitePage (matchningslista){
+const siteNumber = document.querySelector('#siteNumber');
+const siteCount = matchningslista.antal_sidor;
+siteNumber.innerHTML = `Antal sidor ${siteCount}`;
 }
