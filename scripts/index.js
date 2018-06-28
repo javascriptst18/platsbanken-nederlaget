@@ -1,3 +1,5 @@
+
+
 let searchVariables = {
   baseURL: `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?`,
   // lanid: `1`,
@@ -56,9 +58,6 @@ function printJobList(jobList) {
       </div>
     </div>`
   }
-  // for (let jobs of jobList) {
-  //   cardContainer.
-  // }
 }
 
 function addNumberOfJobs(antalTraffar, antalPerSida, antalSidor) {
@@ -81,12 +80,13 @@ function createListeners() {
 }
 
 async function createDropdowns() {
-
   const lanList = await fetchData(searchVariables.listaLanURL);
   insertDropdownMenu(lanList, document.getElementById(`dropdownLan`));
+
   const yrkenList = await fetchData(searchVariables.listaYrkenURL);
   insertDropdownMenu(yrkenList, document.getElementById(`dropdownYrke`));
   //lägg tryckta knappar på en rad under sökrubriker!
+  console.log(`created dropdowns`)
 }
 
 //Create search functionallity
@@ -118,7 +118,9 @@ async function submitSearch(event) {
 async function addLanFilter(event) {
   event.preventDefault();
   // 1. show button in filter field
+  showInFilterField(event.target)
   // 2. hide button
+  hideButton(event.target)
   // 3. add lanFilter to array
 
 }
@@ -126,8 +128,11 @@ async function addLanFilter(event) {
 async function addYrkesFilter(event) {
   event.preventDefault();
   // 1. show button in filter field
+  //showInFilterField(event.target)
   // 2. hide button
+  //hideInFilterField(event.target)
   // 3. add lanFilter to array
+  //addLanFIlter(event.target)
 
 }
 
@@ -179,3 +184,11 @@ async function insertDropdownMenu(list, dropdownElement) {
     dropdownElement.innerHTML += `<a class="dropdown-item" id="${list.soklista.listnamn}${item.id}" value ="${item.id}" href="#">${item.namn}</a>`;
   }
 }
+function showInFilterField(targetObject){
+  document.getElementById(`filters`).innerHTML += `<div class="filter-button" id="${targetObject.id}" value ="${targetObject.value}">${targetObject.innerHTML}</div>`;
+}
+
+function hideButton(targetObject){
+  targetObject.classList.toggle(`hideElement`)
+}
+
