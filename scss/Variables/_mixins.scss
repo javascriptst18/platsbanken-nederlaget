@@ -52,7 +52,7 @@
 }
 
 @mixin cardImg {
-  object-fit: fill;
+  object-fit: contain;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
