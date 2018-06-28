@@ -48,7 +48,7 @@ function printJobList(jobList) {
   // loop through results and srite innerHTML.
   for (let jobs of jobList) {
     cardContainer.innerHTML += ` <div id="${jobs.annonsid}" class="card">
-      <div class="imgContainer"><img class="card-img  " src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="Card image cap"></div>
+      <div class="img-container"><img class="card-img" src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="No logo"></div>
       <div class="card-body">
         <h5 class="card-title">${jobs.annonsrubrik}</h5>
         <p class="card-text">${jobs.kommunnamn}, ${jobs.lan}</p>
