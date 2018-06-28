@@ -8,6 +8,7 @@ header {
       position: absolute -1000;
       top: 40%;
       left: 37%;
+
     }
 
     .inputContainer {
@@ -45,6 +46,7 @@ header {
         float: left;
         margin-right:40px;
         margin-left:5px;
+
       }
 
       #dropDownTwo {
@@ -53,6 +55,18 @@ header {
         float: left;
 
       }
+
     }
 
+}
+
+//move to new Objects
+
+.quantity {
+  color:black;
+  text-align: center;
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px #355384;
 }
