@@ -10,7 +10,7 @@ async function runScript() {
   console.log(results);
   printJobList(results.matchningslista.matchningdata)
 
-  // to be announced: 
+  // to be announced:
   // addNumberOfJobs(results.matchningslista.antal_platsannonser, results.matchningslista.antal_platserTotal, results.matchningslista.antal_sidor);
 
   createListeners();
@@ -36,7 +36,7 @@ function printJobList(jobList) {
   // loop through results and srite innerHTML.
   for (let jobs of jobList) {
     cardContainer.innerHTML += ` <div id="${jobs.annonsid}" class="card">
-      <img class="card-img  " src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="Card image cap">
+      <div class="imgContainer"><img class="card-img  " src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="Card image cap"></div>
       <div class="card-body">
         <h5 class="card-title">${jobs.annonsrubrik}</h5>
         <p class="card-text">${jobs.kommunnamn}, ${jobs.lan}</p>
@@ -63,7 +63,7 @@ function createListeners() {
   searchField.addEventListener(`submit`, submitSearch);
   const lanMenu = document.getElementById(`dropdownMenuLan`);
   lanMenu.addEventListener(`click`, submitLan);
- 
+
   const yrkesMenu = document.getElementById(`dropdownMenuYrkesomrade`);
   yrkesMenu.addEventListener(`click`, submitYrke);
   console.log(`created listeners!`)
