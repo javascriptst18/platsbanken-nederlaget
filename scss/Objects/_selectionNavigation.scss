@@ -5,7 +5,7 @@
 .input-group.mb-6 {
   display: flex;
   justify-content: flex-start;
-  
+
 }
 
 .filters {
@@ -15,4 +15,8 @@
 .filter-button {
  @include filterButtons;
 
+}
+
+.input-group.mb-6 {
+  
 }
