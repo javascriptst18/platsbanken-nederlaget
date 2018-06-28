@@ -1,24 +1,26 @@
 #cardContainer{
   @include centerMainContent;
+
 }
 
 .card{
   @include singelCardStyle;
+
 }
+
 .card-body{
   @include cardStyle;
   margin: 0;
 
 }
 
+.img-container{
+  width: 255px;
+  height: 100px;
+}
 
 .card-img{
-  display: flex;
-  align-items: flex-end;
-  max-width: 15%;
-  position: absolute;
-  top: 18%;
-  left: 105%;
+  object-fit: fill;
 
 }
 
