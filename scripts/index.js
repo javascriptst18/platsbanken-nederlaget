@@ -22,7 +22,7 @@ async function runScript() {
   const results = await searchByCriteria(`&lanid=1&yrkesomradeid=3&antalrader=10`);
   printJobList(results.matchningslista.matchningdata)
 
-  // to be announced: 
+  // to be announced:
   // addNumberOfJobs(results.matchningslista.antal_platsannonser, results.matchningslista.antal_platserTotal, results.matchningslista.antal_sidor);
 
   createDropdowns();
@@ -48,7 +48,7 @@ function printJobList(jobList) {
   // loop through results and srite innerHTML.
   for (let jobs of jobList) {
     cardContainer.innerHTML += ` <div id="${jobs.annonsid}" class="card">
-      <img class="card-img  " src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="Card image cap">
+      <div class="imgContainer"><img class="card-img  " src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="Card image cap"></div>
       <div class="card-body">
         <h5 class="card-title">${jobs.annonsrubrik}</h5>
         <p class="card-text">${jobs.kommunnamn}, ${jobs.lan}</p>
@@ -72,6 +72,7 @@ function createListeners() {
   //adds submit lsitener to search fild.
   const searchField = document.getElementById(`formField`);
   searchField.addEventListener(`submit`, submitSearch);
+
   const lanMenu = document.getElementById(`dropdownLan`);
   lanMenu.addEventListener(`click`, addLanFilter);
 
@@ -170,6 +171,7 @@ async function fetchData(url) {
 // This function is set on hold
 // For now we hard code buttons with ids similar to lanID from the API
 //
+
 async function insertDropdownMenu(list, dropdownElement) {
   dropdownElement.innerHTML = ``;
   for (let item of list.soklista.sokdata) {
@@ -177,4 +179,3 @@ async function insertDropdownMenu(list, dropdownElement) {
     dropdownElement.innerHTML += `<a class="dropdown-item" id="${list.soklista.listnamn}${item.id}" value ="${item.id}" href="#">${item.namn}</a>`;
   }
 }
-
