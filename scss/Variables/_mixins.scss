@@ -6,6 +6,19 @@
 
 }
 
+@mixin filterButtons {
+  width: auto;
+  height:auto;
+  background-color:$spaceGray;
+  margin-left: 3%;
+  margin-top: 3%;
+  padding: 1rem;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+
+}
+
 @mixin singelCardStyle {
   max-width: 750px;
   width: 66%;
@@ -38,10 +51,15 @@
 
 }
 
-@mixin footer {
+@mixin cardImg {
+  object-fit: fill;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 
 }
 
-@mixin hide {
-  display: none;
+@mixin footer {
+
 }

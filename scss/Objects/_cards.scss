@@ -1,31 +1,39 @@
-#cardContainer{
+#cardContainer {
   @include centerMainContent;
+
 }
 
-.card{
+.card {
   @include singelCardStyle;
+
 }
-.card-body{
+
+.card-body {
   @include cardStyle;
   margin: 0;
 
 }
 
-
-.card-img{
-  display: flex;
-  align-items: flex-end;
-  max-width: 15%;
-  position: absolute;
-  top: 18%;
-  left: 105%;
+.img-container {
+  @include cardImg;
+  width: 165px;
+  height: 95px;
+  margin: 1%;
 
 }
 
-.card-title{
-  color: $darkKnightGray;
+.card-img {
+  @include cardImg;
+  object-fit: fill;
+
 }
 
-.card-text{
+.card-title {
   color: $darkKnightGray;
+  
+}
+
+.card-text {
+  color: $darkKnightGray;
+
 }
