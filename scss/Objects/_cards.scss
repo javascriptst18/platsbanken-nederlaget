@@ -24,13 +24,13 @@
 
 .card-img {
   @include cardImg;
-  object-fit: fill;
+  object-fit: contain;
 
 }
 
 .card-title {
   color: $darkKnightGray;
-  
+
 }
 
 .card-text {
