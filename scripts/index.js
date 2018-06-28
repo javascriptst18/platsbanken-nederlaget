@@ -22,7 +22,6 @@ async function runScript() {
   //initiate search results.
   const results = await searchByCriteria(`&lanid=1&yrkesomradeid=3&antalrader=10`);
   printJobList(results.matchningslista.matchningdata)
-console.log(results.matchningslista.matchningdata)
   // to be announced:
   // addNumberOfJobs(results.matchningslista.antal_platsannonser, results.matchningslista.antal_platserTotal, results.matchningslista.antal_sidor);
 
@@ -46,8 +45,6 @@ function printJobList(jobList) {
   // erase list
   cardContainer.innerHTML = "";
   // loop through results and srite innerHTML.
-  console.log(`print job list`)
-  console.log(jobList)
   for (let jobs of jobList) {
     cardContainer.innerHTML += ` <div id="${jobs.annonsid}" class="card">
       <div class="img-container"><img class="card-img" src="http://api.arbetsformedlingen.se/af/v0/platsannonser/${jobs.annonsid}/logotyp" alt="No logo"></div>
@@ -98,23 +95,22 @@ async function submitSearch(event) {
   //handles empty case!
   if (searchInput.value == ``) {
     // if empty asks for new search!
-    //
-    // FEL GÖR OM! VID TOM TEXT ANVÄNDS SENASTE
-    if(searchVariables.searchCriterias.searchTerm){
-    delete searchVariables.searchCriterias.searchTerm
+    if (searchVariables.searchCriterias.searchTerm) {
+      delete searchVariables.searchCriterias.searchTerm
     }
-    
-    delete searchVariables.searchCriterias.searchTerm;
     return searchInput.placeholder = `Prova igen`;
   } else {
     // split string
     //update string
     const searchQuery = `&nyckelord=${searchInput.value}`
-    obj = {dataset: {value: `` },
-    id: "searchTerm"
+    obj = {
+      dataset: { value: `` },
+      id: "searchTerm"
     };
     appendSearchString(searchQuery, obj);
     updateSearchString();
+    const matches = await newSearch();
+    printJobList(matches.matchningslista.matchningdata);
   }
 }
 
@@ -123,24 +119,30 @@ async function submitSearch(event) {
 async function addLanFilter(event) {
   event.preventDefault();
   // 1. show button in filter field
-  showInFilterField(`&lanid=`, event.target);
+  showInFilterField(`&yrkesomradeid=`, event.target);
   // 2. hide button
   hideButton(event.target);
   // 3. add lanFilter to array
 
   // perform new serarch
-  newSearch();
+  const matches = await newSearch();
+  printJobList(matches.matchningslista.matchningdata);
+  //remove object from search string
 
 }
 
 async function addYrkesFilter(event) {
   event.preventDefault();
   // 1. show button in filter field
-  //showInFilterField(event.target)
+  showInFilterField(`&lanid=`, event.target);
   // 2. hide button
-  //hideInFilterField(event.target)
+  hideButton(event.target);
   // 3. add lanFilter to array
-  //addLanFIlter(event.target)
+
+  // perform new serarch
+  const matches = await newSearch();
+  printJobList(matches.matchningslista.matchningdata);
+  //remove object from search string
 
 }
 // does the async fetch command!
@@ -158,22 +160,24 @@ async function insertDropdownMenu(list, dropdownElement) {
     dropdownElement.innerHTML += `<a class="dropdown-item" id="${list.soklista.listnamn}${item.id}" data-value="${item.id}" href="#">${item.namn}</a>`;
   }
 }
-function showInFilterField(details, targetObject) {
+async function showInFilterField(details, targetObject) {
 
   const newFilter = createFilterDiv(targetObject);
   document.getElementById(`filters`).appendChild(newFilter);
   appendSearchString(details, targetObject);
   updateSearchString();
-  newSearch();
+  const matches = await newSearch();
+  printJobList(matches.matchningslista.matchningdata);
 
-  newFilter.addEventListener(`click`, (event) => {
+  newFilter.addEventListener(`click`, async (event) => {
     event.preventDefault();
     //show dropdown button again
     hideButton(targetObject);
     //remove object in fitler list
     removeSearchString(newFilter);
     updateSearchString();
-    newSearch();
+    const matches = await newSearch();
+    printJobList(matches.matchningslista.matchningdata);
     //remove object from search string
     removeFilter(newFilter)
   })
@@ -216,12 +220,9 @@ function updateSearchString() {
   for (let option in searchVariables.searchCriterias) {
     searchVariables.searchString += searchVariables.searchCriterias[option];
   }
-  newSearch();
 }
 
 async function newSearch() {
-  console.log(searchVariables.searchString)
-  const matches = await fetchData(searchVariables.searchString);
-  console.log(matches);
-  printJobList(matches.matchningslista.matchningdata);
+  console.log(searchVariables.searchString);
+  return await fetchData(searchVariables.searchString);
 }
