@@ -1,4 +1,17 @@
-
+let searchVariables = {
+  baseURL: `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?`,
+  // lanid: `1`,
+  // yrkesomradeid: `3`,
+  // antalrader: `10`,
+  listaLanURL: `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/lan`,
+  listaYrkenURL: `http://api.arbetsformedlingen.se/af/v0/platsannonser/soklista/yrkesomraden`
+}
+// save all searchFilters in an object to be used in search
+let searchFilters = {
+  lanid: `&lanid=1`,
+  yrkesomradeid: `&yrkesomradeid=3`,
+  antalrader: `&antalrader=10`
+}
 
 //function that runs / initiates script
 async function runScript() {
@@ -6,13 +19,13 @@ async function runScript() {
   const cardContainer = document.querySelector(`#cardContainer`);
 
   //initiate search results.
-  const results = await searchByCriteria(`lanid=1&yrkesomradeid=3&antalrader=10`);
-  console.log(results);
+  const results = await searchByCriteria(`&lanid=1&yrkesomradeid=3&antalrader=10`);
   printJobList(results.matchningslista.matchningdata)
 
   // to be announced: 
   // addNumberOfJobs(results.matchningslista.antal_platsannonser, results.matchningslista.antal_platserTotal, results.matchningslista.antal_sidor);
 
+  createDropdowns();
   createListeners();
 }
 // runs script
@@ -22,9 +35,8 @@ runScript();
 
 //simple search by concatenated search criteria
 async function searchByCriteria(searchCriteria) {
-
   //fetches and awaits response object
-  const matches = await fetchData(searchCriteria);
+  const matches = await fetchData(searchVariables.baseURL + searchCriteria);
   // returns matching list items
   return matches;
 }
@@ -58,16 +70,22 @@ function addNumberOfJobs(antalTraffar, antalPerSida, antalSidor) {
 // designated function that adds listners to buttons and search fields.
 function createListeners() {
   //adds submit lsitener to search fild.
-  console.log(`creating listeners...`)
   const searchField = document.getElementById(`formField`);
   searchField.addEventListener(`submit`, submitSearch);
-  const lanMenu = document.getElementById(`dropdownMenuLan`);
-  lanMenu.addEventListener(`click`, submitLan);
- 
-  const yrkesMenu = document.getElementById(`dropdownMenuYrkesomrade`);
-  yrkesMenu.addEventListener(`click`, submitYrke);
-  console.log(`created listeners!`)
+  const lanMenu = document.getElementById(`dropdownLan`);
+  lanMenu.addEventListener(`click`, addLanFilter);
 
+  const yrkesMenu = document.getElementById(`dropdownYrke`);
+  yrkesMenu.addEventListener(`click`, addYrkesFilter);
+}
+
+async function createDropdowns() {
+
+  const lanList = await fetchData(searchVariables.listaLanURL);
+  insertDropdownMenu(lanList, document.getElementById(`dropdownLan`));
+  const yrkenList = await fetchData(searchVariables.listaYrkenURL);
+  insertDropdownMenu(yrkenList, document.getElementById(`dropdownYrke`));
+  //lägg tryckta knappar på en rad under sökrubriker!
 }
 
 //Create search functionallity
@@ -89,57 +107,62 @@ async function submitSearch(event) {
 }
 
 // finds Lan id from Lan data!
-async function submitLan(event) {
+// async function submitLan(event) {
+//   event.preventDefault();
+//   let lanInput = event.target.value;
+//   const lanList = await searchByLan(lanInput);
+//   console.log(lanList);
+//   printJobList(lanList.matchningslista.matchningdata);
+// }
+async function addLanFilter(event) {
   event.preventDefault();
-  let lanInput = event.target.id;
-  console.log(`Klickat på län: ${lanInput}`);
-  //CHECK LAN ID!!!
-  const lanList = await searchByLan(lanInput);
-  console.log(lanList);
-  printJobList(lanList.matchningslista.matchningdata);
+  // 1. show button in filter field
+  // 2. hide button
+  // 3. add lanFilter to array
+
+}
+
+async function addYrkesFilter(event) {
+  event.preventDefault();
+  // 1. show button in filter field
+  // 2. hide button
+  // 3. add lanFilter to array
+
 }
 
 // find job based on yrkesområde!
 async function submitYrke(event) {
   event.preventDefault();
   let yrkesInput = event.target.id;
-  console.log(`Klickat på yrkesområde: ${yrkesInput}`);
+
   //CHECK LAN ID!!!
   const yrkesList = await searchByYrkesomrade(yrkesInput);
-  console.log(yrkesList);
+
   printJobList(yrkesList.matchningslista.matchningdata);
 }
 
 async function searchByWords(criteria) {
   // Should split search string by _space_ or commas
   // const newCriteria = splitSearchString();
-
   //concat free word search term!
-  const searchURL = `nyckelord=${criteria}`;
-  console.log(searchURL);
+
   // fetch data!
-  const matches = await fetchData(searchURL);
+  const matches = await fetchData(`${searchVariables.baseURL}nyckelord=${criteria}`);
   return matches;
 }
 async function searchByLan(criteria) {
-  console.log(criteria);
-  const searchURL = `lanid=${criteria}`
-  const matches = await fetchData(searchURL);
+  const matches = await fetchData(`${searchVariables.baseURL}lanid=${criteria}`);
   return matches;
 }
 
 async function searchByYrkesomrade(criteria) {
-  console.log(criteria);
-  const searchURL = `yrkesomradeid=${criteria}`
-  const matches = await fetchData(searchURL);
+  const matches = await fetchData(`${searchVariables.baseURL}yrkesomradeid=${criteria}`);
   return matches;
 }
 
-async function fetchData(criteria) {
-  //sets base URL:
-  const baseURL = `http://api.arbetsformedlingen.se/af/v0/platsannonser/matchning?`;
-  //creates array of search resutl objects
-  const responseObject = await fetch(baseURL + criteria);
+async function fetchData(url) {
+
+  const responseObject = await fetch(url);
   const matches = await responseObject.json();
   return matches;
 }
@@ -147,11 +170,11 @@ async function fetchData(criteria) {
 // This function is set on hold
 // For now we hard code buttons with ids similar to lanID from the API
 //
-// async function getLanID(lanName){
-//   const lanURL= `platsannonser/soklista/lan`;
-//   const lanList = await fetchData(lanURL);
-//   console.log(lanList)
-//       for (let lan of lanList.soklista.sokdata){
-//         console.log(`${lan.id} tillhör ${lan.namn}` )
-//       }
-// }
+async function insertDropdownMenu(list, dropdownElement) {
+  dropdownElement.innerHTML = ``;
+  for (let item of list.soklista.sokdata) {
+    //get element value attribute
+    dropdownElement.innerHTML += `<a class="dropdown-item" id="${list.soklista.listnamn}${item.id}" value ="${item.id}" href="#">${item.namn}</a>`;
+  }
+}
+
